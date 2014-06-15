@@ -1,17 +1,15 @@
-$(function() {
-    // No box ad when we have adhesion, so #main-content gets 12 columns
-    if (window.innerWidth <= 1024){
-        $('#main-content').removeClass('col-md-8').addClass('col-md-12');
-    }
-
-    // Templating example
-    var context = $.extend(APP_CONFIG, {
-        'template_path': 'jst/example.html',
-        'config': JSON.stringify(APP_CONFIG, null, 4),
-        'copy': JSON.stringify(COPY, null, 4)
+$(document).ready(function() {
+    $('.mask-text').on('mouseover',function(){
+        $(this).parent().find('.mask').css('opacity','0.4');
+    }).on('mouseout',function(){
+        $(this).parent().find('.mask').css('opacity','0.6');
     });
 
-    var html = JST.example(context);
+    // $('.idea3 .mask-text').on('mouseover',function(){
+    //  $(this).parent().find('.mask').show();
+    // }).on('mouseout',function(){
+    //  $(this).parent().find('.mask').hide();
+    // });
 
-    $('#template-example').html(html);
+
 });
