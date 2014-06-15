@@ -23,7 +23,7 @@ def index():
 def _story(slug):
     context = make_context()
 
-    context['story'] = list(context['COPY'][slug])
+    context['story'] = context['COPY'][slug]
     context['slug'] = slug
 
     return render_template('story.html', **context)

@@ -4,49 +4,29 @@
         <div class="article">
             <div class="row mobile-hide">
                 <div class="col-lg-12 col-md-12 col-sm-12 inline-img">
-                    {% for row in story %}
-                        {% if row.template == 'titlecard' %}
-                            <img src="../../img/{{ row.photo }}">
-                            <div class="title">
-                                <h1>{{ row.text }}</h1>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                    <img src="../../img/{{ story.cover_photo }}">
+                    <div class="title">
+                        <h1>{{ story.title }}</h1>
+                    </div>
                 </div>
             </div>
             <div class="row mobile-show">
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-                    {% for row in story %}
-                        {% if row.template == 'titlecard' %}
-                            <div class="title">
-                                <h1>{{ row.text }}</h1>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                    <div class="title">
+                        <h1>{{ story.title }}</h1>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-2 col-lg-offset-2 byline">
-                    {% for row in story %}
-                        {% if row.template == 'author' %}
-                            <img src="../../img/{{ row.photo }}">
-                            <p class="name">by <a href="http://twitter.com/{{ row.twitter }}" target="_blank">{{ row.name }}</a></p>
-                            <p class="bio">{{ row.text }}</p>
-                        {% endif %}
-                    {% endfor %}
+                    <img src="../../img/{{ story.author_photo }}">
+                    <p class="name">by <a href="http://twitter.com/{{ story.twitter }}" target="_blank">{{ story.author }}</a></p>
+                    <p class="bio">{{ story.bio }}</p>
                 </div>
                 <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6 article-body">
-                    {% for row in story %}
-                        {% if row.template == 'text' %}
-                            {{ row.text }}
-                        {% endif %}
-                    {% endfor %}
+                    {{ story.text }}
 
-                    {% for row in story %}
-                        {% if row.template == 'author' %}
-                            <p class="bio mobile-show">{{ row.text }}</p>
-                        {% endif %}
-                    {% endfor %}
+                    <p class="bio mobile-show">{{ story.bio }}</p>
                 </div>
             </div>
         </div>
