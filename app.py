@@ -17,7 +17,32 @@ def index():
     """
     Example view demonstrating rendering a simple HTML page.
     """
-    return render_template('index.html', **make_context())
+    context = make_context()
+
+    # Homepage needs to be a list of lists.
+    # The inner list should only have four objects max.
+    # Because of reasons.
+    context['grid'] = []
+    contents = list(context['COPY']['index'])
+    not_yet_four = []
+
+    for idx, row in enumerate(contents):
+        row = dict(zip(row.__dict__['_columns'], row.__dict__['_row']))
+        row_title = row.get('title', None)
+
+        if row_title:
+            if row_title not in ['title']:
+                not_yet_four.append(row)
+
+                if len(not_yet_four) == 4:
+                    context['grid'].append(not_yet_four)
+                    not_yet_four = []
+
+        if (idx + 1) == len(contents):
+            if len(not_yet_four) > 0:
+                context['grid'].append(not_yet_four)
+
+    return render_template('index.html', **context)
 
 @app.route('/story/<string:slug>/')
 def _story(slug):

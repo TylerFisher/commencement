@@ -18,7 +18,22 @@
                 </div>
             </div>
         </div>
+
+        {% for row in grid %}
         <div class="row list-row">
+            {% for item in row %}
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 list-block">
+                    <img src="img/{{ item.image }}">
+                    <div class="mask"></div>
+                    <div class="mask-text">
+                        <p><a href="/story/{{ item.slug }}">{{ item.title }}</a></p>
+                        <p class="name">by {{ item.author }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <!-- <div class="row list-row">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 list-block">
                 <img src="img/list1.jpg">
                 <div class="mask"></div>
@@ -153,6 +168,6 @@
                     <p class="name">by Celeste Mora</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 {% endblock %}
