@@ -3,25 +3,23 @@
     <title>{{ story.title }} | NBN Commencement 2014</title>
 {% endblock %}
 {% block content %}
-    <div class="container-fluid">
         <div class="article">
-            <div class="row mobile-hide">
-                <div class="col-lg-12 col-md-12 col-sm-12 inline-img">
-                    <img src="../../img/{{ story.cover_photo }}">
-                    <div class="title">
-                        <h1>{{ story.title }}</h1>
-                    </div>
+            <div class="cover mobile-hide" style="background-image: url('../../img/{{ story.cover_photo }}'); background-size: cover;">
+                <div class="title">
+                    <h1>{{ story.title }}</h1>
                 </div>
             </div>
+        <div class="container">
             <div class="row mobile-show">
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
                     <div class="title">
                         <h1>{{ story.title }}</h1>
+                        <p class="name mobile-show">by <a href="http://twitter.com/{{ story.twitter }}" target="_blank">{{ story.author }}</a></p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-2 col-lg-offset-2 byline">
+                <div class="col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-3 col-lg-offset-1 byline">
                     <img src="../../img/{{ story.author_photo }}">
                     <p class="name">by <a href="http://twitter.com/{{ story.twitter }}" target="_blank">{{ story.author }}</a></p>
                     <p class="bio">{{ story.bio }}</p>
