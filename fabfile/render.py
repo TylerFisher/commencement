@@ -76,7 +76,7 @@ def render_all():
     app_config_js()
     copytext_js()
 
-    compiled_includes = {} 
+    compiled_includes = {}
 
     for rule in app.app.url_map.iter_rules():
         rule_string = rule.rule
@@ -121,3 +121,48 @@ def render_all():
         with open(filename, 'w') as f:
             f.write(content.encode('utf-8'))
 
+def render_stories(compiled_includes):
+    """
+    Render the detail pages.
+    """
+    from flask import g, url_for
+    from render_utils import make_context
+
+    context = make_context()
+
+    local('rm -rf .stories_html')
+
+    stories = list(context['COPY']['index'])
+
+    compiled_includes = compiled_includes or {}
+
+    for story in stories:
+        story = dict(zip(story.__dict__['_columns'], story.__dict__['_row']))
+        slug = story.get('slug')
+
+        with app.app.test_request_context():
+            path = '%sindex.html' % url_for('_story', slug=slug)
+
+        with app.app.test_request_context(path=path):
+            print 'Rendering %s' % path
+
+            g.compile_includes = True
+            g.compiled_includes = compiled_includes
+
+            view = app.__dict__['_story']
+            content = view(slug)
+
+            # compiled_includes = g.compiled_includes
+
+        path = '.stories_html%s' % path
+
+        # Ensure path exists
+        head = os.path.split(path)[0]
+
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
+
+        with open(path, 'w') as f:
+            f.write(content.encode('utf-8'))
