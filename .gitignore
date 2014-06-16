@@ -50,3 +50,5 @@ data/gdoc*.csv
 www/comments/index.html
 analytics.json
 analytics.txt
+.stories_html
+.stories_gzip
