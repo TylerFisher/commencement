@@ -6,7 +6,6 @@ from fabric.state import env
 import app_config
 
 # Other fabfiles
-import assets
 import copytext
 import data
 import issues
@@ -117,12 +116,12 @@ def _deploy_to_s3(path='.gzip'):
 
     sync = 'aws s3 sync %s/ %s --acl "public-read" ' + exclude_flags + ' --cache-control "max-age=5" --region "us-east-1"'
     sync_gzip = 'aws s3 sync %s/ %s --acl "public-read" --content-encoding "gzip" --exclude "*" ' + include_flags + ' --cache-control "max-age=5" --region "us-east-1"'
-    sync_assets = 'aws s3 sync %s/ %s --acl "public-read" --cache-control "max-age=86400" --region "us-east-1"'
+    # sync_assets = 'aws s3 sync %s/ %s --acl "public-read" --cache-control "max-age=86400" --region "us-east-1"'
 
     for bucket in app_config.S3_BUCKETS:
         local(sync % (path, 's3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
         local(sync_gzip % (path, 's3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
-        local(sync_assets % ('www/assets/', 's3://%s/%s/assets/' % (bucket, app_config.PROJECT_SLUG)))
+        # local(sync_assets % ('www/assets/', 's3://%s/%s/assets/' % (bucket, app_config.PROJECT_SLUG)))
 
 def _gzip(in_path='www', out_path='.gzip'):
     """
