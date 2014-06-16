@@ -163,8 +163,8 @@ def deploy(remote='origin'):
         if app_config.DEPLOY_SERVICES:
             servers.deploy_confs()
 
-    update()
-    compiled_includes = render.render_all()
+    # update()
+    render.render_all()
     render.render_stories(compiled_includes)
     _gzip('www', '.gzip')
     _deploy_to_s3()
