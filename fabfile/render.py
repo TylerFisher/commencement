@@ -121,6 +121,8 @@ def render_all():
         with open(filename, 'w') as f:
             f.write(content.encode('utf-8'))
 
+        return compiled_includes
+
 def render_stories(compiled_includes):
     """
     Render the detail pages.
