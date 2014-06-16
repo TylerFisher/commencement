@@ -22,14 +22,16 @@
         {% for row in grid %}
         <div class="row list-row">
             {% for item in row %}
+                <a href="story/{{ item.slug }}">
                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 list-block">
                     <img src="img/{{ item.image }}">
                     <div class="mask"></div>
                     <div class="mask-text">
-                        <p><a href="story/{{ item.slug }}">{{ item.title }}</a></p>
+                        <p class="story-title">{{ item.title }}</p>
                         <p class="name">by {{ item.author }}</p>
                     </div>
                 </div>
+                </a>
             {% endfor %}
         </div>
         {% endfor %}
