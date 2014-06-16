@@ -1,6 +1,10 @@
 {% extends '_base.html' %}
 {% block extra_head %}
     <title>{{ story.title }} | NBN Commencement 2014</title>
+    <meta name="twitter:title" content="{{ story.title }} | {{ COPY.meta.twitter_title }}">
+    <meta property="og:title" content="{{ story.title }} | {{ COPY.meta.facebook_title }}" />
+
+
 {% endblock %}
 {% block content %}
         <div class="article">
@@ -9,7 +13,7 @@
                     <h1>{{ story.title }}</h1>
                 </div>
                 <div class="credit">
-                    <p>Photo by author.</p>
+                    <p>{{ story.photo_cred }}</p>
                 </div>
             </div>
         <div class="container">
